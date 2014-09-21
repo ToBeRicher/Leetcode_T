@@ -3,11 +3,19 @@
 public class Myclass {
 	
 	public static void main(String[] args){
-		int N=100;
+		int N=1000;
 		double[]A = Myclass.getRamdomNumber(N);
+
+		long startT = System.nanoTime();  
+		
 		Myclass.mergeSort(A,0,N-1);
+
+	    long endT = System.nanoTime();  
+		
 		for(int i=0;i<N;i++)
 			System.out.println((int)(A[i]*100));
+
+	    System.out.println(N+"个数排序用时：" + (double)(endT - startT)/1000000+"毫秒");  
 	}
 	
 	public static void mergeSort(double[] array,int start,int end){
