@@ -1,6 +1,6 @@
 //快速排序
 //09/21/2014
-//田忠骏
+//田忠骏 双边逼近中间的方法 应该比 单边的快一些
 public class Myclass {
 	
 	public static void main(String[] args){		
