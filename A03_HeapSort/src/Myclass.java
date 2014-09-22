@@ -1,6 +1,7 @@
 //堆排序
 //09/21/2014
 //田忠骏
+//这周自己创建一个Heap类的方法不是很有效率
 public class Myclass {
 	
 	public static class Heap{//先构建一个heap类
@@ -63,22 +64,23 @@ public class Myclass {
 	
 	    System.out.println(N+"个数排序用时：" + (double)(endT - startT)/1000000+"毫秒");  
 	}
+	
 	public static void heapSort(Heap h){
-		buildheap(h);
+		buildheap(h);//先build
 		for(int i = h.length()-1; i>0; i--){
-			h.exchange(i, 0);
+			h.exchange(i, 0);//没交换一次，i--,也就是heap的长度--
 			maxHeapify(h,0,i);
 		}
 	}
 	
 	public static void buildheap(Heap h){
 		int length=h.length();
-		for(int i =length/2;i>=0;i--){
+		for(int i =length/2;i>=0;i--){//对从中间到第一个元素都做max-heapify
 			maxHeapify(h,i,h.length);
 		}
 	}
-	public static void maxHeapify(Heap h,int i,int length){
-		if(length-1 >= 2*i+2){
+	public static void maxHeapify(Heap h,int i,int length){//第三个input是heapify的长度，不一定是真实地长度，因为要heapsort的时候长度要不断减小,
+		if(length-1 >= 2*i+2){//如果左右都有children
 			double j=h.get(i);
 			double l=h.getLeft(i);
 			double r=h.getRight(i);
@@ -92,7 +94,7 @@ public class Myclass {
 					maxHeapify(h,2*i+2,length);
 				}
 			}
-		}else if(length-1 == 2*i+1 ){
+		}else if(length-1 == 2*i+1 ){//如果只有左边有child
 			if(h.get(i)<h.getLeft(i)){
 				h.exchange(i, 2*i+1);
 			}
