@@ -1,13 +1,14 @@
 //堆排序
 //09/21/2014
 //田忠骏
-//这周自己创建一个Heap类的方法不是很有效率
+//这种自己创建一个Heap类的方法不是很有效率
 public class Myclass {
 	
 	public static class Heap{//先构建一个heap类
 		private double[] array;
-		public int length;
-		public Heap(){
+		private int length;
+		public Heap(){//构造函数
+			//ppt上面的例子，用来单步执行检查程序。
 			array = new double [10];
 			array[0]=4;
 			array[1]=1;
@@ -21,14 +22,14 @@ public class Myclass {
 			array[9]=7;
 			length=10;
 		}
-		public Heap(int N){
+		public Heap(int N){//构造函数
 			array = new double [N];
 			length = N;
 			for(int i=0;i<N;i++){
 				array[i]=Math.random();
 			}
 		}
-		public double get(int i){
+		public double get(int i){// get this value
 			return array[i];
 		}
 		public double getParent(int i){
@@ -54,13 +55,14 @@ public class Myclass {
 		int N=1000;
 		Heap h = new Heap(N);
 		
-		long startT = System.nanoTime();  
+		long startT = System.nanoTime();  //测试算法时间
 		
-		Myclass.heapSort(h);
-	    long endT = System.nanoTime();  
+		Myclass.heapSort(h);//排序
+		
+	    long endT = System.nanoTime();  //测试算法时间
 		
 		for(int i=0;i<N;i++)
-			System.out.println((int)(h.get(i)*100));
+			System.out.println((int)(h.get(i)*100));//打印结果, 因为小数不好看，就全部乘以100
 	
 	    System.out.println(N+"个数排序用时：" + (double)(endT - startT)/1000000+"毫秒");  
 	}

@@ -1,20 +1,21 @@
 //快速排序
-//09/21/2014
-//田忠骏 双边逼近中间的方法 应该比 单边的快一些
+//09/21/2014 
+//quick sort有两种，一种是从左往右，一种是两边向中间搜索，这里用的第二种，代码还没调好！！
+//田忠骏 
 public class Myclass {
 	
 	public static void main(String[] args){		
 		int N=2;
-		double[]A = Myclass.getRamdomNumber(N);
+		double[]A = Myclass.getRamdomNumber(N);//产生随机N个数
 		
-		long startT = System.nanoTime();  
+		long startT = System.nanoTime();  //测试算法耗时
 		
 		Myclass.quickSort(A,1,N-1);
 		
-	    long endT = System.nanoTime();  
+	    long endT = System.nanoTime();   //测试算法耗时
 		
 		for(int i=0;i<N;i++)
-			System.out.println((int)(A[i]*100));
+			System.out.println((int)(A[i]*100));//打印结果, 因为小数不好看，就全部乘以100
 	
 	    System.out.println(N+"个数排序用时：" + (double)(endT - startT)/1000000+"毫秒");  
 	}
