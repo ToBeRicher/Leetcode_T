@@ -5,7 +5,7 @@
 public class Myclass {
 	
 	public static void main(String[] args){		
-		int N=2;
+		int N=1000;
 		double[]A = Myclass.getRamdomNumber(N);//产生随机N个数
 		
 		long startT = System.nanoTime();  //测试算法耗时
@@ -28,6 +28,27 @@ public class Myclass {
 		}
 	}
 
+	public static int partition(double[] array,int s,int e){
+		double key=array[e];
+		int i=s-1;
+		
+		for(int j=s;j<e;j++){//from start to end-1
+			if(array[j]<=key){
+				i++;
+				double temp=array[j];
+				array[j]=array[i];
+				array[i]=temp;
+			}
+		}
+		
+
+		double temp=array[e];
+		array[e]=array[i+1];
+		array[i+1]=temp;
+		return i;
+	}
+	
+	/*
 	public static int partition(double[] array,int s,int e){
 		int i=s;
 		int j=e-1;//??e-1
@@ -57,7 +78,7 @@ public class Myclass {
 			array[e]=temp;
 		}
 		return i;
-	}
+	} */
 	public static double[] getRamdomNumber(int N) {
 		N=Math.abs(N);
 		double []A= new double[N];
