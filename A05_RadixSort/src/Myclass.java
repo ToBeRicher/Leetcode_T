@@ -1,11 +1,11 @@
 //基数排序
-//09/24/2014
+//09/25/2014
 //田忠骏
 public class Myclass {
 	
 	public static void main(String[] args){		
-		int N=1000;
-		double[]A = Myclass.getRamdomNumberInt(N);//产生0-100范围的数
+		int N=1000,range=255;
+		double[]A = Myclass.getRamdomNumberInt(N,range);//产生0-255范围的数
 		
 		long startT = System.nanoTime();  
 		
@@ -23,11 +23,11 @@ public class Myclass {
 		
 	}
 
-	public static double[] getRamdomNumberInt(int N) {
+	public static double[] getRamdomNumberInt(int N,int range) {
 		N=Math.abs(N);
 		double []A= new double[N];
 		for(int i=0;i<N;i++){
-			A[i]=(int)(Math.random()*100);
+			A[i]=(int)(Math.random()*range);
 		}
 		return A;
     }
