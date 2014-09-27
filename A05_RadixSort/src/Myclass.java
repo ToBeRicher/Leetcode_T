@@ -11,7 +11,7 @@ public class Myclass {
 
 		int r=(int) (Math.log(range)/Math.log(2));
 		//Myclass.radixSort(A,N,r);
-		Myclass.radixsort2(A,N);
+		Myclass.radixSort2(A,N);
 	    long endT = System.nanoTime();  
 		
 		//for(int i=0;i<N;i++)
@@ -38,7 +38,7 @@ public class Myclass {
 	}
 	
 
-public static void radixsort2(int data[], int n) //基数排序
+public static void radixSort2(int data[], int n) //基数排序
 {
     int d = 2;
     int[] tmp = new int[n];
