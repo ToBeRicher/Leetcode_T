@@ -67,7 +67,7 @@ public class Myclass {
 	    System.out.println(N+"个数排序用时：" + (double)(endT - startT)/1000000+"毫秒");  
 	}
 	
-	public static void heapSort(Heap h){
+	public static void heapSort(Heap h){//heapSort 的核心就是，1.构建最大heap 2.交换第一个和最后一个元素（第一个必然是最大的数）3.将队尾最后一个元素删除，再一次最大化heap
 		buildheap(h);//先build
 		for(int i = h.length()-1; i>0; i--){
 			h.exchange(i, 0);//没交换一次，i--,也就是heap的长度--
