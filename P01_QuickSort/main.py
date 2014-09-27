@@ -19,7 +19,7 @@ def patition(a, s, e):
     return i+1
 
 a=[]
-for i in xrange(100):
+for i in xrange(1000):
     a.append(random.random()) 
 tic = time.time()
 quickSort(a, 0,len(a)-1)
