@@ -8,7 +8,7 @@ public class Myclass {
 
 		long startT = System.nanoTime();  //测试算法时间
 		
-		Myclass.mergeSort(A,0,N-1);
+		Myclass.mergeSort(A);
 
 	    long endT = System.nanoTime();  //测试算法时间
 		
@@ -16,6 +16,10 @@ public class Myclass {
 			System.out.println((int)(A[i]*100)); //打印结果, 因为小数不好看，就全部乘以100
 
 	    System.out.println(N+"个数排序用时：" + (double)(endT - startT)/1000000+"毫秒");  
+	}
+	
+	public static void mergeSort(double[] array){
+		mergeSort(array, 0, array.length - 1);
 	}
 	
 	public static void mergeSort(double[] array,int start,int end){
