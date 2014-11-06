@@ -40,7 +40,7 @@ public class Myclass {
 
 public static void radixSort2(int data[], int n) //基数排序
 {
-    int d = 2;
+    int d = 2;//这里可以改log(16)(maxnumber)
     int[] tmp = new int[n];
     int[] count = new int[16]; //计数器
     int i, j, k;
@@ -49,13 +49,13 @@ public static void radixSort2(int data[], int n) //基数排序
     {
         for(j = 0; j < 16; j++)
             count[j] = 0; //每次分配前清空计数器
-        for(j = 0; j < n; j++)//scan 16 times 
+        for(j = 0; j < n; j++)//先计数排序一次
         {
             k = (data[j] / radix) % 16; //统计每个桶中的记录数
             count[k]++;
         }
         for(j = 1; j < 16; j++)
-            count[j] = count[j - 1] + count[j]; //将tmp中的位置依次分配给每个桶
+            count[j] = count[j - 1] + count[j]; //计算每个桶在tmp里面的边界，比如count[j]为第j个桶的范围的右边界,count[j-1]+1极为左边界
         for(j = n - 1; j >= 0; j--) //将所有桶中记录依次收集到tmp中
         {
             k = (data[j] / radix) % 16;
@@ -78,3 +78,72 @@ public static void radixSort2(int data[], int n) //基数排序
 		return A;
     }
 }
+/*
+  void countSort(int aArray[],int size)
+{
+     int count[16];//用于计数的数组
+     int * assistArray = new int[size];//辅助数组
+     int * originalArray = aArray;//初始数组指针
+    
+     int base = 15;//即0x1111
+     int tmp = 0;//用于临时存放下标
+     int ncount = 0;//移动位数
+     int maxElement = aArray[0];//求整个排序中最大元素算法效率O(n)
+     for(int i = 1 ;i < size; i++)
+     {
+         if(aArray[i] > maxElement)
+              maxElement = aArray[i];
+     }
+ 
+ 
+     while(1)//循环排序
+     {
+         for(int i = 0 ;i < 16; i++)//先将计数列表清空效率为O(m)
+              count[i] = 0;
+ 
+ 
+         for(int i = 0 ; i < size ; i++)//统计每一个位元素出现的次数O(n)
+         {
+              count[(originalArray[i] & base)>>ncount]++;
+         }
+ 
+         for(int i = 1 ; i < 16 ; i++)//累加次数
+         {
+              count[i] += count[i-1];
+         }
+ 
+         for(int i = size-1 ; i >= 0;i--)//将数据排序到assistArray中
+         {
+              tmp = (originalArray[i] & base)>>ncount;
+              count[tmp]--;
+              assistArray[count[tmp]] = originalArray[i];
+             
+         }
+         //交换assistArray和originalArray
+         int * tmpArray = originalArray;
+         originalArray = assistArray;
+         assistArray = tmpArray;
+ 
+         //将base向左移动四位
+         base = base <<4;
+         //移动比较位数加
+         ncount += 4;
+ 
+         //判断排序是否结束
+         if((maxElement = (maxElement >> 4)) == 0)
+              break;
+     }
+ 
+     //释放分配的空间
+     if(originalArray == aArray)
+     {
+         delete[] assistArray;
+     }
+     else
+     {
+         for(int i = 0 ;i < size ;i++)
+              aArray[i] = originalArray[i];
+         delete[] originalArray;
+     }
+}
+*/
