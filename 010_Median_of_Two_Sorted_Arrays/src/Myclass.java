@@ -1,75 +1,56 @@
 class Myclass {
 	public static void main(String[] args){
-		int[] A = {1};
-		int[] B = {2,3,4,5,6,7,8,9};
-		System.out.print("result: " + findMedianSortedArrays(A,B));
+		Myclass m = new Myclass();
+		int[] A = {1,3};
+		int[] B = {2,4};
+		System.out.print("result: " + m.findMedianSortedArrays(A,B));
 	}
 
-	public static double findMedianSortedArrays(int A[], int B[]) { //需要A的长度小于等于 B
-		if(A.length == 0){
-			return B[B.length/2];
-		}
-		if(B.length == 0){
-			return A[A.length/2];
-		}
-		return find_kth(A, 0, A.length-1, B, 0, B.length-1, (int)((A.length + B.length + 1)/2));
+	public double findMedianSortedArrays(int A[], int B[]) {
+		if(A.length == 0 || A==null)
+			if(B.length%2==1)
+				return B[B.length/2];
+			else
+				return (B[B.length/2]+B[B.length/2 - 1])/2.0;
+		if(B.length == 0 || B==null)
+			if(A.length%2==1)
+				return A[A.length/2];
+			else
+				return (A[A.length/2]+A[A.length/2 - 1])/2.0;
+		System.out.print(findKth(A,0,A.length,B,0,B.length, (A.length+B.length)/2));
+		System.out.print(findKth(A,0,A.length,B,0,B.length, (A.length+B.length)/2 +1));
+		if((A.length+B.length)%2 == 1)  //如果长度之和为奇数
+			return findKth(A,0,A.length,B,0,B.length, (A.length+B.length)/2 +1); 
+		else
+			return (
+					findKth(A,0,A.length,B,0,B.length, (A.length+B.length)/2) + 
+					findKth(A,0,A.length,B,0,B.length, (A.length+B.length)/2 + 1) 
+					)  
+					/2.0; 
     }
-	
-	public static double find_kth(int A[], int al, int ar, int B[], int bl, int br, int k){
-		if(A.length > B.length){ //make sure that A is shorter than B
-			return find_kth(B, bl, br, A, al, ar, k);
-		}
-		int lenA = ar - al + 1;
-		int lenB = br - bl + 1;
-		int m = 0, n = 0;
-		if(k < 5){
-			while(true){
-				if(al == ar+1){
-					return B[k];
-				}
-				if(bl == br+1){
-					return A[k];
-				}
-				if(A[al] > B[bl]){
-					if(k == 1){
-						return B[bl];
-					}
-					bl++;
-					k--;
-				}else if(A[al] < B[bl]){
-					if(k == 1){
-						return A[al];
-					}
-					al++;
-					k--;
-				}else{
-					if(k <= 2){
-						return A[al];
-					}
-					al++;
-					bl++;
-					k-=2;
-				}
-			}
-		}else if((int)(k/2) < lenA){ 
-			m = al + (int)(k/2) - 1;
-			n = bl + (k - (int)(k/2)) - 1;
-		}else if((int)(k/2) >= lenA){
-			m = (al + ar) / 2;
-			n = bl + (k - (m - al + 1)) -1;
-		}
-		if(A[m] > B[n]){
-			k = k - (n - bl);
-			ar = m;
-			bl = n;
-		}else if(A[m] < B[n]){//当A=1 B=[2,3,4,5,6,7,8]的时候没法缩小范围
-			k = k - (m - al);
-			al = m;
-			br = n;
-		}else{
-			return A[m];
-		}
+
+	private double findKth(int[] a,int al,int ar, int[] b,int bl,int br, int k) { //包括 a[al:ar-1], 不包括a[ar]
 		
-		return find_kth(A, al, ar, B, bl, br, k);
+		int lenA = ar-al;
+		int lenB = br-bl;
+		
+		if(lenA == 0)
+			return b[bl+k-1];
+		if(lenB == 0)
+			return a[al+k-1];
+		if(k==1)
+			return a[al]<b[bl]?a[al]:b[bl];
+		
+		int indexA = (int)((lenA * 1.0 / (lenA + lenB)) * (k-1));
+		int indexB = (k - indexA - 2);
+		if(a[al+indexA]==b[bl+indexB]){
+			return a[al+indexA];
+		}else if(a[al+indexA]>b[bl+indexB]){
+			return findKth( a, al, al+indexA+1,  b, bl+indexB+1, br,  k-(indexB+1));
+		}else if(a[al+indexA]<b[bl+indexB]){
+			return findKth( a, al+indexA+1, ar,  b, bl, bl+indexB+1,  k-(indexA+1));
+		}
+		return 0;
 	}
+	
 }
