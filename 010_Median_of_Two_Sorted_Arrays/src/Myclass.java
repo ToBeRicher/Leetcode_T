@@ -17,8 +17,7 @@ class Myclass {
 				return A[A.length/2];
 			else
 				return (A[A.length/2]+A[A.length/2 - 1])/2.0;
-		System.out.print(findKth(A,0,A.length,B,0,B.length, (A.length+B.length)/2));
-		System.out.print(findKth(A,0,A.length,B,0,B.length, (A.length+B.length)/2 +1));
+		
 		if((A.length+B.length)%2 == 1)  //如果长度之和为奇数
 			return findKth(A,0,A.length,B,0,B.length, (A.length+B.length)/2 +1); 
 		else

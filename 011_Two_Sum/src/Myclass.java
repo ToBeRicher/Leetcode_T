@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Hashtable;
-
+//找到两个数，和为target
 class Myclass {
  
 

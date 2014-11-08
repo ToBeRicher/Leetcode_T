@@ -1,6 +1,6 @@
 class Myclass {
  
-
+	//一次只能走1或者2梯，n梯有多少种？
 	public static void main(String[] args){
 		Myclass m = new Myclass();
 		
