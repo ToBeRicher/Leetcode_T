@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/*
+ 数组里面找出3个数之和为0，找出所有这样的组合，并且不能重复。
+ */
 class Myclass {
-	//数组里面找出3个数之和为0，找出所有这样的组合，并且不能重复。
 	public static void main(String[] args){
 		Myclass m = new Myclass();
 		int[] n = {-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6};

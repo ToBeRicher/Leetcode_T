@@ -50,6 +50,6 @@ public class Myclass {
 		//T[2].left=T[3];
 		
 		Myclass Me=new Myclass();
-		boolean res=Me.isBalanced(T[0]);
+		System.out.print(res=Me.isBalanced(T[0]));
 	}
 }
