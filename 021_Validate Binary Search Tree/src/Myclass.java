@@ -10,6 +10,9 @@ Both the left and right subtrees must also be binary search trees.
  */
 
 class Myclass {
+	/*
+	 * Use DFS to solve it.
+	 */
  
 	public static void main(String[] args){
 		Myclass m = new Myclass();
