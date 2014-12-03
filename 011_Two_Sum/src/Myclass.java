@@ -14,6 +14,7 @@ class Myclass {
 	
 	public HashMap<Integer,Integer> ht = new HashMap<Integer,Integer>();
     public int[] twoSum(int[] numbers, int target) {
+    	//利用hashMap，遍历到某个数A，先看看map里面有没有为(target-A)的数。如果没有则put A into hashmap
     	for(int i=0;i<numbers.length;i++){
     		if(ht.get(target - numbers[i]) == null){
     			ht.put(numbers[i], i);
