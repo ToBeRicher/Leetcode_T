@@ -1,5 +1,5 @@
 class Myclass {
- 
+  
 	//把string 转换成整数，如果string不符合书写规范，则返回0
 	public static void main(String[] args){
 		Myclass m = new Myclass();

@@ -1,5 +1,5 @@
 import java.util.Arrays;
-//速度和第一种用hashmap差不多
+//速度和第一种用hashmap差不多 
 class Myclass {
  
 
