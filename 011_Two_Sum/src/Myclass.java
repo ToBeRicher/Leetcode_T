@@ -3,7 +3,7 @@ import java.util.Hashtable;
 //找到两个数，和为target
 class Myclass {
  
-
+ 
 	public static void main(String[] args){
 		Myclass m = new Myclass();
 		int[] numbers = {3,2,4};
