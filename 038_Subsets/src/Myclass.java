@@ -32,18 +32,18 @@ class Myclass {
         List<List<Integer>> res = new ArrayList<List<Integer>>((int)Math.pow(2, S.length));
         Arrays.sort(S);
         List<Integer> item = new ArrayList<Integer>();
-        recursive(S, 0, item, res);
+        dfs(S, 0, item, res);
         return res;
     }
-	private void recursive(int[] s, int cur, List<Integer> item,
+	private void dfs(int[] s, int cur, List<Integer> item,
 			List<List<Integer>> res) {
 		if(cur == s.length){
 			res.add(new ArrayList<Integer>(item));
 			return;
 		}
-		recursive(s, cur+1, item, res);
+		dfs(s, cur+1, item, res);
 		item.add(s[cur]);
-		recursive(s, cur+1, item, res);
+		dfs(s, cur+1, item, res);
 		item.remove(item.size()-1);
 	}
 }
