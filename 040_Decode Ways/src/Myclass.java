@@ -15,10 +15,10 @@ The number of ways decoding "12" is 2.
 class Myclass {
 	public static void main(String[] args){
 		Myclass m = new Myclass();
-		System.out.print(m.numDecodings("111"));
+		System.out.print(m.numDecodings("124436203451111133412111141"));
 	}
 	/*
-	 * Recursive method. Error happens when stack exceeded.
+	 * Recursive method. Error happens when stack exceeded(too long String).
 	 */
     public int numDecodings(String s) {
     	if(s.length()==0)
