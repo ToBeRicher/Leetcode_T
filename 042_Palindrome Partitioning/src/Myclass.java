@@ -24,8 +24,7 @@ class Myclass {
 		}
 		
 		for(int i=current; i<ch.length; i++){
-			//isPalindrome(ch, i, i);
-			//check palindrome from i to i
+			//check palindrome from current to i
 			int s = current;
 			int e = i;
 			boolean isPalin = true;
@@ -38,7 +37,7 @@ class Myclass {
 				e--;
 			}
 			
-			//
+			//if compose palidrome
 			if(isPalin){
 				StringBuilder sb = new StringBuilder();
 				sb.append(ch, current, i-current+1);
