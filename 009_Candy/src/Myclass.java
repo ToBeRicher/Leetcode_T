@@ -1,68 +1,45 @@
-//Given an array of integers, every element appears three times except for one. Find that single one.
+/*
+ There are N children standing in a line. Each child is assigned a rating value.
 
+You are giving candies to these children subjected to the following requirements:
 
-
-
-public class Myclass {
-	private static final int UP = 1;
-	private static final int UP_FLAT = 2;
-	private static final int DOWN = -1;
-	private static final int DOWN_FLAT = -2;
-	
-	public static int candy(int[] ratings) {
-		if(ratings.length==0)
-			return 0;
-		if(ratings.length==1)
-			return 1;
-		int pulse=0;
-		int nowHighest=0;
-		int total=0;
-		int nowCandy=1;
-		int preFlag=0;
-		int Flag=0;
-		int FlatCount=0;
-		int peak_length=0;
-		int peak_value;
-		int i=1;
-		
-		//**First loop finding first peak**//
-		while(i<ratings.length&&peak_length==0){
-			total+=nowCandy;
-			
-			preFlag=Flag;
-			if(ratings[i-1]==ratings[i]){
-				Flag+=Flag%2;
-			}else if(ratings[i-1]<ratings[i]){
-				Flag=UP;
-			}else{
-				Flag=DOWN;
-			}
-			
-			if(preFlag*Flag<0){//found first peak
-				peak_length=FlatCount;
-				peak_value=nowCandy;
-				if(peak_value<=0){
-					total+=(peak_value-1)*(-i);
-					peak_value=1;
-				}
-				break;
-			}else if(Flag==1){
-				FlatCount=0;
-				nowCandy++;// candy for the child[i]
-			}else if(Flag==-1){
-				FlatCount=0;
-				nowCandy--;// candy for the child[i]
-			}else{//flat part
-				FlatCount++;
-			}
-			i++;
-		}
-		return total;
-    }
-	
+Each child must have at least one candy.
+Children with a higher rating get more candies than their neighbors.
+What is the minimum candies you must give?
+ */
+class Myclass {
 	public static void main(String[] args){
-		int[] a={1,2,3,4,2};
-		int res=candy(a);
-		System.out.print(""+res);
+		Myclass m = new Myclass();
+		int [] ratings = {1,2,3,1,3,6,5,4,3};
+		System.out.print(m.candy(ratings));
 	}
+	
+    public int candy(int[] ratings) {
+    	if(ratings.length <= 1)
+    		return ratings.length;
+    	int maxIncreaseLength = 1;
+        int currentInLen = 1;
+    	int maxDecreaseLength = 1;
+        int currentDeLen = 1;
+        for(int i=1; i<ratings.length; i++){
+        	if(ratings[i] >= ratings[i-1]){
+        		currentInLen++;
+        	}else{
+        		maxIncreaseLength = maxIncreaseLength > currentInLen? maxIncreaseLength: currentInLen;
+        		currentInLen = 1;
+        	}
+        	
+        	if(ratings[i] <= ratings[i-1]){
+        		currentDeLen++;
+        	}else{
+        		maxDecreaseLength = maxDecreaseLength > currentDeLen? maxDecreaseLength: currentDeLen;
+        		currentDeLen = 1;
+        	}
+        }
+        maxIncreaseLength = maxIncreaseLength > currentInLen? maxIncreaseLength: currentInLen;
+        maxDecreaseLength = maxDecreaseLength > currentDeLen? maxDecreaseLength: currentDeLen;
+        
+        int max = maxIncreaseLength > maxDecreaseLength? maxIncreaseLength: maxDecreaseLength;
+        return max;
+    }
 }
